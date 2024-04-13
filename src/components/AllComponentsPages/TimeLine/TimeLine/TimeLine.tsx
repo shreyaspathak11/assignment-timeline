@@ -147,7 +147,7 @@ const TimeLine = () => {
                     )}
                     {isLoading && (
                         <div className="loader">
-                            <Spin size="large"></Spin>
+                            <Spin size="small"></Spin>
                         </div>
                     )}
                     {!allDataLoaded && (

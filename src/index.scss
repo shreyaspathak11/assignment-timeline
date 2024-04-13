@@ -6,6 +6,12 @@
 :root {
   --bg-light: #ffffff;
   --text-light: #000000;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-07: #fbfbfb; /* Adjusted color */
+  --color-text: var(--text-light);
+  --bg-light: #ffffff;
+  --text-light: #000000;
   --text-white: #ffffff;
   --color-white: #ffffff;
   --color-black: #000000;
@@ -48,15 +54,22 @@
   --dark-01-rgba: 41, 41, 41;
 }
 
-// body.dark-theme {
-//   --bg-light: #292929;
-//   --text-light: #bdbdbd;
-//   --color-white: #222222;
-//   --color-black: #ccc;
-//   --color-05: #414141;
-//   --color-07: #292929;
-//   --color-13: #313131;
-// }
+[data-theme="dark"] {
+  --bg-light: #292929;
+  --text-light: #bdbdbd;
+  --color-white: #222222;
+  --color-black: #ccc;
+  --color-07: #484848; 
+  --color-text: var(--text-light);
+  --color-14: #ccc;
+  --bg-light: #292929;
+  --text-light: #bdbdbd;
+  --color-white: #222222;
+  --color-black: #ccc;
+  --color-05: #414141;
+  --color-07: #292929;
+  --color-13: #313131;
+}
 
 body,
 html {

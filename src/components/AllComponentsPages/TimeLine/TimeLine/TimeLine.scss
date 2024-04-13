@@ -1,5 +1,24 @@
 @import './../../../../mixins.scss';
 
+:root {
+    --bg-light: #ffffff;
+    --text-light: #000000;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-07: #fbfbfb; /* Adjusted color */
+    --color-text: var(--text-light);
+    --btn-color: #007bff;
+  }
+  
+  [data-theme="dark"] {
+    --bg-light: #292929;
+    --text-light: #bdbdbd;
+    --color-white: #222222;
+    --color-black: #ccc;
+    --color-07: #292929; /* Adjusted color */
+    --color-text: var(--text-light);
+  }
+  
 .timeline-wrapper {
     .left-timeline {
         
@@ -9,7 +28,7 @@
         span {
             font-size: 14px;
             font-weight: 600;
-            color: var(--text-light);
+            color: var(--color-text);
 
         }
         .wrapper-timeline-dates {
@@ -25,18 +44,24 @@
                 margin-bottom: 10px;
                 padding: auto;
                 
-                .reset-date-btn{
-                    background: var(--color-07);
-                    border: 0;
-                    border-radius: 20px;
-                    padding: 5px 10px;
-                    margin-right: 10px;
-                    cursor: pointer;
-                    font-size: 12px;
-                    font-weight: 600;
-                    color: var(--text-light);
-                    outline: none;
-                }
+                .reset-dates-btn {
+                    background-color: var(--color-07); 
+                    border: 1px solid var(--color-07); 
+                    border-radius: 20px; /* Apply border radius */
+                    padding: 8px 16px; /* Add padding */
+                    font-size: 14px; /* Set font size */
+                    font-weight: 600; /* Set font weight */
+                    color: var(--btn-color); /* Set text color */
+                    cursor: pointer; /* Change cursor to pointer on hover */
+                    transition: background-color 0.3s, color 0.3s; /* Add transition effect */
+                  }
+                  
+                  .reset-dates-btn:hover {
+                     
+                    background-color: var(--color-07); /* Change background color on hover */
+                    color: var(--color-text); /* Change text color on hover */
+                  }
+
                 .datepicker-timeline {
                     height: 35px;
                     border: 0 !important;
@@ -86,16 +111,17 @@
             
             .timeline-content{
                 .timeline-content-title{
-                    text-align: justify;
+                    text-align: left;
                     font-size: 14px;
                     font-weight: 600;
+                    color: var(--color-text);
                 }
                 .timeline-content-date{
                     display: flex;
                     justify-content: center;
                     font-size: 14px;
                     font-weight: 600;
-                    color: var(--text-light);
+                    color: var(--color-text);
                     text-align: center;
                 }
 
