@@ -1,0 +1,150 @@
+@import './../../../../mixins.scss';
+
+.timeline-wrapper {
+    .left-timeline {
+        padding-right: 15px;
+        padding-left: 0;
+
+        .wrapper-timeline-dates {
+            span {
+                font-size: 13px;
+                font-weight: 600;
+                padding: 5px 10px;
+            }
+
+            .datepicker-timeline {
+                height: 35px;
+                border: 0 !important;
+                outline: none !important;
+                border-radius: 20px;
+                background: var(--color-07) !important;
+
+                .ant-picker-suffix {
+                    display: none;
+                }
+
+                input {
+                    text-align: center;
+                    font-size: 12px !important;
+                    font-weight: 600;
+                    width: 100px;
+                    padding-top: 2px;
+                }
+
+                .ant-picker-clear {
+                    display: none;
+                }
+            }
+        }
+
+        .timeline-wrapper-main {
+            max-height: calc(100vh - 295px);
+            overflow: auto;
+            padding: 18px 10px;
+
+            .xem-timeline {
+                @include xem-timeline;
+            }
+
+            .no-data-found {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .loader {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 30px;
+            }
+        }
+    }
+
+    .popup-container {
+        position: absolute;
+        top: 0;
+        right: 20px; // Adjust this value as needed
+        z-index: 999; // Ensure popup appears above timeline
+        background: var(--color-07);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        text-align: center;
+
+        h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            text-align: center; // Center align the h4 title
+        }
+
+        .scroll-content-details {
+            text-align: justify; // Align the div justify
+            padding: 0 10px; // Adjust padding as needed
+        }
+
+        p {
+            font-size: 13px;
+            padding-left: 20px;
+            position: relative;
+
+            &:before {
+                width: 8px;
+                height: 8px;
+                border: 2px solid var(--text-light);
+                content: '';
+                position: absolute;
+                left: 2px;
+                top: 5px;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .close-popup {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+
+    .right-timeline {
+        .content-timeline {
+            background: var(--color-07);
+            border-radius: 10px;
+
+            h4 {
+                font-size: 14px;
+                font-weight: 600;
+                margin: 0 0 15px 0;
+                text-align: center; // Center align the h4 title
+            }
+
+            .scroll-content-details {
+                max-height: calc(100vh - 295px);
+                overflow: auto;
+                padding-right: 10px;
+            }
+
+            p {
+                font-size: 13px;
+                padding-left: 20px;
+                position: relative;
+
+                &:before {
+                    width: 8px;
+                    height: 8px;
+                    border: 2px solid var(--text-light);
+                    content: '';
+                    position: absolute;
+                    left: 2px;
+                    top: 5px;
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,177 @@
+@import './../../mixins.scss';
+
+.product-header {
+    left: 0;
+    top: 0;
+    z-index: 999;
+
+    .header-wrapper {
+        background: rgba(var(--color-white-rgba), var(--alpha-07));
+        box-shadow: 0px 3px 15px rgba(#37729d, 0.07);
+        // border-bottom: 1px solid var(--color-05);
+        border-bottom: 1px solid rgba(var(--color-skyblue-rgba), var(--alpha-01));
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: saturate(180%) blur(20px);
+
+        .left-header-content {
+            .xem-header-nav-btn {
+                @include btn-lightblue;
+                height: 56px;
+                width: 56px;
+
+                &:hover {
+                    img {
+                        filter: brightness(10);
+                    }
+                }
+            }
+
+            .xempla-logo {
+                height: 25px;
+            }
+        }
+
+        .right-header-content {
+            .weatherHeader {
+                background: var(--color-08);
+                padding: 10px 13px;
+                border-radius: 12px;
+
+                p {
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+
+                &:hover {
+                    background: var(--color-05);
+                }
+            }
+
+            .notidot {
+                right: -3px;
+                top: -2px;
+                width: 10px;
+                height: 10px;
+                border-radius: 22px;
+                background: #ff395f;
+                z-index: 2;
+            }
+
+            .squircle-btn {
+                @include squircleShape;
+            }
+
+            .wun-btn {
+                background: var(--color-05);
+
+                &:after {
+                    background: var(--color-05);
+                }
+
+                &:hover {
+                    background: var(--color-02);
+
+                    &:after {
+                        background: var(--color-02);
+                    }
+                }
+            }
+
+            .theme-change-btn {
+                background: transparent;
+
+                &:after {
+                    background: transparent;
+                }
+
+                &:hover {
+                    background: transparent;
+
+                    &:after {
+                        background: transparent;
+                    }
+
+                    img {
+                        opacity: 0.8;
+                        filter: none;
+                    }
+                }
+
+                img.lighThemeIcon {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+
+    .dropdown-usernav {
+        .ant-dropdown {
+            min-width: 250px !important;
+
+            .ant-dropdown-menu {
+                padding: 10px;
+                font-family: 'Inter', sans-serif;
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                backdrop-filter: saturate(180%) blur(20px);
+                background: var(--color-white);
+                box-shadow: 0px 5px 16px rgba(var(--color-black-rgba), var(--alpha-01));
+            }
+
+            .ant-dropdown-menu li {
+                padding: 10px 12px !important;
+
+                span.ant-dropdown-menu-title-content {
+                    font-size: 13px;
+                    font-weight: 500;
+                }
+            }
+
+            li.ant-dropdown-menu-item-active {
+                background-color: var(--color-05);
+
+                span.ant-dropdown-menu-title-content {
+                    color: var(--color-01) !important;
+                }
+            }
+        }
+    }
+}
+
+body.dark-theme {
+    .product-header {
+
+        .header-wrapper {
+            background: rgba(var(--dark-01-rgba), var(--alpha-07));
+            box-shadow: 0px 3px 15px rgba(var(--color-black-rgba), var(--alpha-07));
+            // border-bottom: 1px solid var(--color-05);
+            border-bottom: 1px solid rgba(var(--dark-01-rgba), var(--alpha-09));
+
+            .right-header-content {
+                .weatherHeader {
+                    background: var(--dark-03);
+
+                    &:hover {
+                        background: var(--color-black);
+                    }
+                }
+
+                .wun-btn {
+                    background: var(--dark-03);
+
+                    &:after {
+                        background: var(--dark-03);
+                    }
+
+                    &:hover {
+                        background: var(--color-black);
+
+                        &:after {
+                            background: var(--color-black);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

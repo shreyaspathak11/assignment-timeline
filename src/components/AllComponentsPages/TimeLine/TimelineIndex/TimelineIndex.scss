@@ -1,0 +1,39 @@
+@import './../../../../mixins.scss';
+
+.wrapper-inner-timeline-components {
+    background: var(--bg-light);
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 12px rgba(var(--color-black-rgba), var(--alpha-005));
+
+    .squircle-btn {
+        @include squircleShape;
+    }
+
+    .btn-show-filter {
+        right: 6px;
+        top: 9px;
+    }
+
+    .wrapper-timeline-content {
+
+        .title-part-timeline {
+            h3 {
+                font-size: 17px;
+                font-weight: 700;
+                color: var(--text-light);
+            }
+
+            span {
+                font-size: 12px;
+                color: var(--text-light);
+                line-height: 16px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .timeline-timeline-wrapper {
+        padding-top: 10px;
+    }
+}
