@@ -13,7 +13,7 @@ const TimeLine = () => {
     const [activeItemDescription, setActiveItemDescription] = useState<string | null>(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [filteredData, setFilteredData] = useState(data.slice(0, 10)); // Initial data
+    const [filteredData, setFilteredData] = useState(data.slice(0, 10)); 
     const [allDataLoaded, setAllDataLoaded] = useState(false);
     const [isNoDataFound, setIsNoDataFound] = useState(false);
 
@@ -35,6 +35,10 @@ const TimeLine = () => {
     const handleResetDates = () => {
         setStartDate(null);
         setEndDate(null);
+        setActiveItemIndex(null);
+        setActiveItemTitle(null);
+        setActiveItemDescription(null);
+        setIsPopupOpen(false);
     };
 
     const handleItemClick = (index: number) => {
@@ -55,7 +59,7 @@ const TimeLine = () => {
     useEffect(() => {
         if (filterData.length === 0) {
             setIsNoDataFound(true);
-            setIsLoading(false); // Reset loading state if no data found
+            setIsLoading(false);
         } else {
             setIsNoDataFound(false);
         }
@@ -74,27 +78,29 @@ const TimeLine = () => {
                     setIsLoading(true); // Trigger loading when loader is in view
                     setTimeout(() => {
                         // Simulate loading delay
-                        setFilteredData([...filteredData, ...data.slice(filteredData.length, filteredData.length + 10)]);
-                        setIsLoading(false); // After data is loaded, set loading to false
-                        if (filteredData.length + 10 >= data.length) {
-                            setAllDataLoaded(true); // Check if all data is loaded
+                        const newDataChunk = data.slice(filteredData.length, filteredData.length + 8); // Load 8 more items
+                        setFilteredData([...filteredData, ...newDataChunk]);
+                        setIsLoading(false);
+                        if (filteredData.length + 8 >= data.length) {
+                            setAllDataLoaded(true);
                         }
-                    }, 1500); // Simulated loading time
+                    }, 1000); 
                 }
             },
             { threshold: 0.5 }
         );
-
+    
         if (loaderRef.current) {
             observer.current.observe(loaderRef.current);
         }
-
+    
         return () => {
             if (observer.current) {
                 observer.current.disconnect();
             }
         };
     }, [filteredData, isLoading, allDataLoaded]);
+    
 
     const renderDescription = () => {
         if (!activeItemDescription) return null;
@@ -104,15 +110,15 @@ const TimeLine = () => {
 
     return (
         <div className="w-auto timeline-wrapper d-flex flex-row mt-3 justify-content-around">
-            <div className="col-lg-8 col-xl-8 col-xxl-8 left-timeline">
+            <div className=" col-xxl-8 left-timeline">
                 <div className="wrapper-timeline-dates d-flex align-items-center justify-content-center">
-                    <span>Showing Timeline From</span>
-                    <div>
-                        <DatePicker onChange={onChangeStartDate} className="datepicker-timeline" />
+                    <span>Showing Timeline</span>
+                    <div className='date-box'>
+                        <span>from</span>
+                        <DatePicker onChange={onChangeStartDate} value={startDate} placeholder='Start Date' className="datepicker-timeline" />
                         <span>to</span>
-                        <DatePicker onChange={onChangeEndDate} className="datepicker-timeline" />
-                        <Button className='reset-dates-btn p-0'
-                         onClick={handleResetDates}>Reset</Button>
+                        <DatePicker onChange={onChangeEndDate} value={endDate} placeholder='End Date' className="datepicker-timeline" />
+                        <button className='reset-dates-btn' onClick={handleResetDates}>Reset Dates</button>
                     </div>
                 </div>
                 <div className="timeline-wrapper-main mt-3">
@@ -130,12 +136,12 @@ const TimeLine = () => {
                             items={filterData.length > 0 ? filterData.map((item, index) => ({
                                 className: activeItemIndex === index ? 'active' : '',
                                 children: (
-                                    <div onClick={() => handleItemClick(index)}>
-                                        <p>{item.title}</p>
-                                        <span>{item.date}</span>
+                                    <div className='timeline-content' onClick={() => handleItemClick(index)}>
+                                        <h5 className='timeline-content-title'>{item.title}</h5>
+                                        <span className='timeline-content-date '>{item.date}</span>
                                     </div>
                                 ),
-                                color: index % 2 === 0 ? '#36454F' : '#C0C0C0',
+                                color: index % 2 === 0 ? '#36454F' : '#7393B3',
                             })) : []}
                         />
                     )}
@@ -146,7 +152,6 @@ const TimeLine = () => {
                     )}
                     {!allDataLoaded && (
                         <div ref={loaderRef} style={{ height: '20px' }}>
-                            {/* Loader */}
                         </div>
                     )}
                 </div>
@@ -154,13 +159,17 @@ const TimeLine = () => {
 
             {window.innerWidth <= 992 ? (
                 isPopupOpen && (
-                    <div className="popup-container">
-                        <div className="right-timeline p-3">
-                            <button className="close-popup " onClick={() => setIsPopupOpen(false)}>
+                    <div className="popup-overlay">
+                        <div className="popup-container">
+                            <button className="close-popup" onClick={() => setIsPopupOpen(false)}>
                                 <CloseOutlined />
                             </button>
-                            <h4>{activeItemTitle}</h4>
-                            <div className="scroll-content-details">{renderDescription()}</div>
+                            <div className="popup-title">
+                                <h4>{activeItemTitle}</h4>
+                            </div>
+                            <div className="popup-content">
+                                <div className="scroll-content-details">{renderDescription()}</div>
+                            </div>
                         </div>
                     </div>
                 )
@@ -171,7 +180,8 @@ const TimeLine = () => {
                         <div className="scroll-content-details">{renderDescription()}</div>
                     </div>
                 </div>
-            )}
+)}
+
         </div>
     );
 };

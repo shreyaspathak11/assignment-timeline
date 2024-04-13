@@ -965,14 +965,16 @@
         .ant-timeline-item-content {
             background: var(--bg-light);
             box-shadow: 0px 0px 10px rgba(var(--color-black-rgba), var(--alpha-01));
-            padding: 12px;
-            border-radius: 6px;
+            padding: 10px;
+            border-radius: 4px;
             // width: calc(100% - 50px);
             width: auto;
             max-width: calc(100% - 80px);
             inset-inline-start: calc(0% - 0px);
             margin: 0;
             left: 50px;
+
+            cursor: pointer;
 
         }
     }
@@ -1007,7 +1009,7 @@
         .ant-timeline-item-content {
             background: var(--bg-light);
             box-shadow: 0px 0px 10px rgba(var(--color-black-rgba), var(--alpha-01));
-            padding: 12px;
+            padding: 10px;
             border-radius: 6px;
             // width: calc(100% - 50px);
             width: auto;
@@ -1052,6 +1054,27 @@
         .ant-timeline-item-content {
             background: var(--color-04);
             box-shadow: 0px 3px 15px rgba(115, 153, 242, 0.26);
+        }
+    }
+
+    @media (max-width:530px) {
+        .ant-timeline-item-left {
+                
+            .ant-timeline-item-content {
+                width: fit-content;
+                overflow: auto;
+                white-space: nowrap; /* prevents text from wrapping */ 
+            }
+        }
+
+        .ant-timeline-item-right {
+            
+
+            .ant-timeline-item-content {
+                width: fit-content;
+                overflow: auto;
+                white-space: nowrap; /* prevents text from wrapping */ 
+            }
         }
     }
 }
